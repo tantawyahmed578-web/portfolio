@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ahmed Tantawi — .NET Backend Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0F172A;
+    --bg2:      #1E293B;
+    --bg3:      #263248;
+    --accent:   #38BDF8;
+    --accent2:  #0EA5E9;
+    --text:     #E2E8F0;
+    --muted:    #94A3B8;
+    --border:   #334155;
+    --green:    #4ADE80;
+    --purple:   #A78BFA;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(15,23,42,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
+    color: var(--accent);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.875rem;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* SECTIONS */
+  section { padding: 5rem 0; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+  /* HERO */
+  #hero {
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-tag {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    color: #F8FAFC;
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 2rem;
+    line-height: 1.75;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0F172A;
+  }
+  .btn-primary:hover { background: var(--accent2); }
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #F8FAFC;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* STACK */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .stack-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .stack-card:hover { border-color: var(--accent); }
+  .stack-card-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.85rem;
+  }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.78rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 4px;
+    background: var(--bg3);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .tag.accent { color: var(--accent); border-color: rgba(56,189,248,0.3); background: rgba(56,189,248,0.08); }
+  .tag.green { color: var(--green); border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.08); }
+  .tag.purple { color: var(--purple); border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.08); }
+
+  /* PROJECTS */
+  .projects-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateX(4px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-header {
+    display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 1rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .project-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #F8FAFC;
+  }
+  .project-links { display: flex; gap: 0.75rem; }
+  .project-link {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.3rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    transition: all 0.2s;
+    font-family: 'Fira Code', monospace;
+  }
+  .project-link:hover { color: var(--accent); border-color: var(--accent); }
+  .project-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.1rem;
+    line-height: 1.65;
+  }
+  .project-features {
+    list-style: none;
+    margin-bottom: 1.25rem;
+    display: flex; flex-direction: column; gap: 0.35rem;
+  }
+  .project-features li {
+    font-size: 0.875rem;
+    color: var(--muted);
+    display: flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .project-features li::before {
+    content: '▸';
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  /* CONTACT */
+  #contact { border-top: 1px solid var(--border); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .contact-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-decoration: none;
+    display: flex; flex-direction: column; gap: 0.4rem;
+    transition: border-color 0.2s;
+  }
+  .contact-item:hover { border-color: var(--accent); }
+  .contact-label { font-size: 0.75rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+  .contact-value { font-size: 0.9rem; color: var(--text); font-family: 'Fira Code', monospace; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-family: 'Fira Code', monospace;
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    .container { padding: 0 1.25rem; }
+    section { padding: 3.5rem 0; }
+    #hero { padding-top: 6rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">ahmed.tantawi</span>
+  <ul class="nav-links">
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-tag">Available for work</div>
+    <h1>Junior .NET<br/>Backend Developer</h1>
+    <p class="hero-desc">
+      I build clean, maintainable backend systems using ASP.NET Core and C#.
+      My focus is on RESTful APIs, clean architecture, and code that's easy to extend and test.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="https://github.com/tantawyahmed578-web" target="_blank" class="btn btn-ghost">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/ahmed-tantawi-b65774281" target="_blank" class="btn btn-ghost">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="container">
+    <div class="section-label">// tech stack</div>
+    <h2>What I Work With</h2>
+    <div class="stack-grid">
+
+      <div class="stack-card">
+        <div class="stack-card-title">Languages & Frameworks</div>
+        <div class="tag-list">
+          <span class="tag accent">C#</span>
+          <span class="tag accent">ASP.NET Core</span>
+          <span class="tag accent">Web API</span>
+          <span class="tag accent">MVC</span>
+          <span class="tag accent">.NET 8</span>
+        </div>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-card-title">Database & ORM</div>
+        <div class="tag-list">
+          <span class="tag green">SQL Server</span>
+          <span class="tag green">Entity Framework Core</span>
+          <span class="tag green">LINQ</span>
+        </div>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-card-title">Security</div>
+        <div class="tag-list">
+          <span class="tag purple">JWT Auth</span>
+          <span class="tag purple">Role-Based Authorization</span>
+          <span class="tag purple">ASP.NET Core Identity</span>
+        </div>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-card-title">Architecture & Patterns</div>
+        <div class="tag-list">
+          <span class="tag">Onion Architecture</span>
+          <span class="tag">Generic Repository</span>
+          <span class="tag">Specification Pattern</span>
+          <span class="tag">Unit of Work</span>
+          <span class="tag">SOLID</span>
+          <span class="tag">OOP</span>
+        </div>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-card-title">Tools & Practices</div>
+        <div class="tag-list">
+          <span class="tag">AutoMapper</span>
+          <span class="tag">RESTful APIs</span>
+          <span class="tag">Unit Testing</span>
+          <span class="tag">Swagger</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Agile/Scrum</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">// projects</div>
+    <h2>What I've Built</h2>
+    <div class="projects-list">
+
+      <!-- E-Commerce -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-name">E-Commerce REST API</span>
+          <div class="project-links">
+            <a href="https://github.com/tantawyahmed578-web/ECommerceApi" target="_blank" class="project-link">
+              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+        <p class="project-desc">Full-featured e-commerce backend with product catalog, shopping cart, checkout flow, and admin dashboard. Built with Onion Architecture for clean separation of concerns.</p>
+        <ul class="project-features">
+          <li>JWT authentication with role-based authorization (Customer / Admin)</li>
+          <li>Generic Repository & Specification patterns for flexible data access</li>
+          <li>Product catalog with categories, shopping cart, and order management</li>
+          <li>Unit tests for core business logic validation</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag accent">ASP.NET Core</span>
+          <span class="tag accent">C#</span>
+          <span class="tag green">EF Core</span>
+          <span class="tag green">SQL Server</span>
+          <span class="tag purple">JWT</span>
+          <span class="tag">Onion Architecture</span>
+          <span class="tag">AutoMapper</span>
+          <span class="tag">xUnit</span>
+        </div>
+      </div>
+
+      <!-- Talbat -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-name">Talbat — Food Delivery API</span>
+          <div class="project-links">
+            <a href="https://github.com/tantawyahmed578-web/TalBat" target="_blank" class="project-link">
+              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+        <p class="project-desc">Food delivery backend inspired by Talabat. Supports multiple roles (Customer, Restaurant, Admin) with full authentication flow and order management.</p>
+        <ul class="project-features">
+          <li>JWT authentication with user registration, login, and role-based authorization</li>
+          <li>ASP.NET Core Identity for user management</li>
+          <li>Generic Repository & Specification patterns for testable data access</li>
+          <li>Custom middleware for global exception handling</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag accent">ASP.NET Core</span>
+          <span class="tag accent">C#</span>
+          <span class="tag green">EF Core</span>
+          <span class="tag green">SQL Server</span>
+          <span class="tag purple">JWT</span>
+          <span class="tag purple">ASP.NET Identity</span>
+          <span class="tag">Onion Architecture</span>
+          <span class="tag">AutoMapper</span>
+        </div>
+      </div>
+
+      <!-- Medical Clinic -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-name">Medical Clinic Management API</span>
+          <div class="project-links">
+            <a href="https://github.com/tantawyahmed578-web/MedicalClinicAPI" target="_blank" class="project-link">
+              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+        <p class="project-desc">Graduation project — backend system for managing clinic operations including patient records, doctor profiles, and appointment scheduling with conflict detection.</p>
+        <ul class="project-features">
+          <li>Full CRUD for patients, doctors, and appointments</li>
+          <li>Appointment conflict detection (double-booking prevention)</li>
+          <li>Four-layer Onion Architecture with Repository and Unit of Work</li>
+          <li>Swagger/OpenAPI documentation enabled</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag accent">ASP.NET Core</span>
+          <span class="tag accent">C#</span>
+          <span class="tag green">EF Core</span>
+          <span class="tag green">SQL Server</span>
+          <span class="tag">Onion Architecture</span>
+          <span class="tag">Unit of Work</span>
+          <span class="tag">Swagger</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">// contact</div>
+    <h2>Get In Touch</h2>
+    <div class="contact-grid">
+      <a href="mailto:tantawyahmed578@gmail.com" class="contact-item">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">tantawyahmed578@gmail.com</span>
+      </a>
+      <a href="https://linkedin.com/in/ahmed-tantawi-b65774281" target="_blank" class="contact-item">
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value">ahmed-tantawi</span>
+      </a>
+      <a href="https://github.com/tantawyahmed578-web" target="_blank" class="contact-item">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value">tantawyahmed578-web</span>
+      </a>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Cairo, Egypt</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Ahmed Tantawi · Junior .NET Backend Developer · Cairo, Egypt</span>
+</footer>
+
+</body>
+</html>
